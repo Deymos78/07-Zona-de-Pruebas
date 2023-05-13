@@ -1,13 +1,8 @@
 import {useState} from "react";
 
-
-
 export const useForm = (initialForm = {}) => {
 
-
     const [formState, setFormState] = useState( initialForm );
-
-
 
     // Creamos una funciona para cuando el estado del formulario cambie
     // Resivimos el evento  
@@ -19,9 +14,11 @@ export const useForm = (initialForm = {}) => {
         // Desestructuramos el setFormState 
         // Colocamos el nombre y el valor,
         setFormState({
+            // Desestructuramos el form state para colocar los valores en su lugar
             ...setFormState,
+            // Agregamos el valor al nombre
             [name]: value,
-        })
+        });
 
     }
 
