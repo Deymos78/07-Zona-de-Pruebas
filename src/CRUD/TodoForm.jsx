@@ -1,13 +1,13 @@
-import { useForm } from "../hooks/form"
+import { useForm } from "../hooks/useForm"
 
 // AQUI HAREMOS LA INTRODUCCION DE LOS NUEVOS ELEMENTOS
-export const TodoForm = () => {
+export const TodoForm = ({onNewTodo}) => {
 
   // Creamos una instancia del hook useForm donde le pasamos un objeto con los valores vacios y con las 
   // propiedades nombre e email
-  const {nombre, password,formState, onResetForm, onInputChange} = useForm({
-     nombre: '', 
-     password: ''});
+  const {nombre, formState, onResetForm, onInputChange} = useForm({
+     nombre: '',
+    });
 
      // Creamos una funcion que se ejecute cuando el formulario se envie
      // Accedemos al evento del formulario y de el obtendremos lo que necesitamos
@@ -17,17 +17,17 @@ export const TodoForm = () => {
       event.preventDefault();
 
       // Comprobamos que los datos introducidos no sean nulo o que sean mayor a un caracter
-      if( nombre || password <= 1) return;
+      if( nombre.length  <= 1) return;
       
       // El nuevo Todo que vamos a crear sera un objeto 
       const newTodo ={
         id: new Date().getTime(),
         done: false,
-        name: name,
-        password: password
-
+        nombre: nombre
       }
 
+      onNewTodo(newTodo);
+      onResetForm();
 
 
      }
@@ -49,15 +49,8 @@ export const TodoForm = () => {
               placeholder="Escriba su nombre"
               onChange={ onInputChange }
             />
-            
-            <input 
-              type="password"
-              name="password" 
-              value={password}
-              placeholder="Escriba su Contraseña"
-              onChange={ onInputChange }
-            />
 
+          
             <button
               type="submit"
               className="btn btn-primary"

@@ -1,5 +1,7 @@
+// import { useReducer } from "react"
 import { TodoForm } from "./TodoForm"
 import { TodoList } from "./TodoList"
+import { useTodo } from "../hooks/useTodo"
 
 
 
@@ -7,6 +9,9 @@ export const TodoApp = () => {
 
   // Creamos la instancia del reducer en el nivel mas alto
   // Como necesitaremos un lugar para manejar
+  const {todos, handleNewtodo, handleDeleteTodo, handleToggleTodo,} = useTodo();
+
+  
 
   return (
     <>
@@ -14,13 +19,20 @@ export const TodoApp = () => {
 
         {/* Crearemos un formulario para agregar los elementos */}
 
-        <TodoForm/>
+        <TodoForm
+          onNewTodo={ handleNewtodo }
+        />
 
         {/* Crearemos un Componete que tenga la lista de los elementos que vayamos agregando  */}
-        <TodoList/>
+        <TodoList
+          todos={ todos }
+          onDeleteTodo={ handleDeleteTodo }
+          onToggleTodo={ handleToggleTodo }
 
-        
-        
+        />
+
+
+
     </>
   )
 }
