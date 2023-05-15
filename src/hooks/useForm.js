@@ -19,7 +19,6 @@ export const useForm = (initialForm = {}) => {
             // Agregamos el valor al nombre
             [name]: value,
         });
-
     }
 
     // Creamos una funcion para resetear el formulario cuando se llame a la funcion
@@ -28,7 +27,6 @@ export const useForm = (initialForm = {}) => {
         // Cambiamos el estado del formulario 
         setFormState( initialForm );
     }
-
 
     return {
         ...formState,
